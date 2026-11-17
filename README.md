@@ -1,3 +1,3 @@
-# I am a README
+# README
 
 Hello World!
