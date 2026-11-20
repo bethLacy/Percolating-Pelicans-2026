@@ -2,10 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage #measurements deprecated, updated version to use ndimage instead
 
+#Preferably needs commenting to explain how it actually works section by section/line by line
+#can be used to investiage changing nsamp, L and p
+
+#CHANGE THESE TO INVESTIGATE
 nsamp = 1000
 L = 1000
 p = 0.90
 
+#This section should not need altering for investigation purposes
 allarea = np.array([])
 
 for i in range(nsamp):
