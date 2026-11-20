@@ -28,12 +28,9 @@ sxi = -1.0/np.log(p)
 nsptheory = (1-p)**2*np.exp(-s/sxi)
 
 plt.figure()
-
 plt.plot(s, nsp, 'o', label='Simulation')
 plt.plot(s, nsptheory, '-', label='Theory')
-
 plt.xlabel('$s$')
 plt.ylabel('$n(s,p)$')
 plt.legend()
-
 plt.show(block=True)
