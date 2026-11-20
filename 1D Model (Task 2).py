@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage #measurements deprecated, updated version to use ndimage instead
 
-#Preferably needs commenting to explain how it actually works section by section/line by line
-#can be used to investiage changing nsamp, L and p
+#TODO: Preferably needs commenting to explain how it actually works section by section/line by line
+#TODO: Use this script to investiage changing nsamp, L and p
 
 #CHANGE THESE TO INVESTIGATE
 nsamp = 1000
