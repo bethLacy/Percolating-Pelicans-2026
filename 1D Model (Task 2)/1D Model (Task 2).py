@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage #measurements deprecated, updated version to use ndimage instead
 
+from pathlib import Path
+outputFolder = Path(__file__).resolve().parent #force plots to save to the current folder
 
 nsamp = 1000 #set number of simulations
 L = 1000 #set number of sites per simulation
@@ -50,7 +52,7 @@ for p in ps: #repeat the investigation for all the different p values we want to
     plt.ylabel('$n(s,p)$ (cluster number density)')
     plt.title(f'Cluster number density, p = {p}')
     plt.legend()
-    plt.savefig(f'CND_p={p}.eps', format='eps')
+    plt.savefig(outputFolder / f'CND_p={p}.eps', format='eps')
     plt.show(block=True)
 
     #Set up for results output
@@ -133,7 +135,7 @@ plt.plot(ps, avSizeTheorys, 'b.-.', label='Theory')
 plt.xlabel('$p$ (probability of individual site occupation)')
 plt.ylabel('Average cluster size')
 plt.legend()
-plt.savefig(f'AverageClusterSize.eps', format='eps')
+plt.savefig(outputFolder / f'AverageClusterSize.eps', format='eps')
 plt.show(block=True)
 
 #Plot characteristic cluster size results:
@@ -143,7 +145,7 @@ plt.plot(ps, charSizeTheorys, 'b.-.', label='Theory')
 plt.xlabel('$p$ (probability of individual site occupation)')
 plt.ylabel('Characteristic cluster size')
 plt.legend()
-plt.savefig(f'CharClusterSize.eps', format='eps')
+plt.savefig(outputFolder / f'CharClusterSize.eps', format='eps')
 plt.show(block=True)
 
 
