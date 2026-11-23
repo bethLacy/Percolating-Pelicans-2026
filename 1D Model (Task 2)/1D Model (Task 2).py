@@ -207,3 +207,14 @@ plt.show(block=True)
 #charSizeTheory: the theoretical characteristic cluster size
 #charSizeSims: array of the simulated characteristic cluster sizes (for all ps)
 #charSizeTheorys: array of the theoretical characteristic cluster sizes (for all ps)
+
+#psarray: an np array of our p values
+#deltaP: the difference between the current p and critical p (1)
+#charGradientSim,charInterceptSim: constants of the best fit straight line of the characteristic cluster sizes (simulated)
+#sigmaSim: the simulated result for the exponent sigma
+#charGradientTheory,charInterceptTheory: constants of the best fit straight line of the characteristic cluster sizes (theoretical)
+#sigmaTheory: the theoretical result for the exponent sigma
+#avGradientSim,avInterceptSim: constants of the best fit straight line of the average cluster sizes (simulated)
+#gammaSim: the simulated result for the exponent gamma
+#avGradientTheory,avInterceptTheory: constants of the best fit straight line of the average cluster sizes (theoretical)
+#gammaTheory: the theoretical result for the exponent gamma
