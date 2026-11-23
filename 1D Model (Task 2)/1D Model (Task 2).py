@@ -127,6 +127,8 @@ gammaTheory = -avGradientTheory
 
 #Display results
 print("")
+print("Overall results:")
+print("")
 print("Scaling exponents:")
 print(f"Sigma (simulated) = {sigmaSim}")
 print(f"Sigma (theoretical) = {sigmaTheory}")
