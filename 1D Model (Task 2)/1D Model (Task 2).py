@@ -130,14 +130,16 @@ deltaP = 1-psArray
 #Find sigma exponents (using characteristic cluster size)
 charGradientSim, charInterceptSim = np.polyfit(np.log(deltaP), np.log(charSizeSims), 1)
 sigmaSim = -1/charGradientSim
-charGradientTheory, charInterceptTheory = np.polyfit(np.log(deltaP), np.log(charSizeTheorys), 1)
-sigmaTheory = -1/charGradientTheory
+sigmaTheory = 1
 
 #Find gamma exponents (using average cluster size)
 avGradientSim, avInterceptSim = np.polyfit(np.log(deltaP), np.log(avSizeSims), 1)
 gammaSim = -avGradientSim
-avGradientTheory, avInterceptTheory = np.polyfit(np.log(deltaP), np.log(avSizeTheorys), 1)
-gammaTheory = -avGradientTheory
+gammaTheory = 1
+
+#Find errors
+sigmaError = (abs(sigmaSim-sigmaTheory)/sigmaTheory)*100
+gammaError = (abs(gammaSim-gammaTheory)/gammaTheory)*100
 
 #Display results
 print("")
@@ -146,8 +148,10 @@ print("")
 print("Scaling exponents:")
 print(f"Sigma (simulated) = {sigmaSim}")
 print(f"Sigma (theoretical) = {sigmaTheory}")
+print(f"Sigma Error = {sigmaError}")
 print(f"Gamma (simulated) = {gammaSim}")
 print(f"Gamma (theoretical) = {gammaTheory}")
+print(f"Gamma Error = {gammaError}")
 print("")
 
 #Plot average cluster size results:
@@ -218,3 +222,5 @@ plt.show(block=True)
 #gammaSim: the simulated result for the exponent gamma
 #avGradientTheory,avInterceptTheory: constants of the best fit straight line of the average cluster sizes (theoretical)
 #gammaTheory: the theoretical result for the exponent gamma
+#sigmaError: percentage error in the simulated result for sigma compared to the theoretical one
+#gammaError: percentage error in the simulated result for gamma compared to the theoretical one
