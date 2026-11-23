@@ -2,8 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage #measurements deprecated, updated version to use ndimage instead
 
-from pathlib import Path
-outputFolder = Path(__file__).resolve().parent #force plots to save to the current folder
+from pathlib import Path #force plots to save to the current folder
+outputFolder = Path(__file__).resolve().parent 
+
+import logging #stop displaying the annoying irrelevant silly warning
+logging.getLogger('matplotlib.backends.backend_ps').setLevel(logging.ERROR)
 
 nsamp = 1000 #set number of simulations
 L = 1000 #set number of sites per simulation
@@ -126,7 +129,7 @@ print(f"Sigma (simulated) = {sigmaSim}")
 print(f"Sigma (theoretical) = {sigmaTheory}")
 print(f"Gamma (simulated) = {gammaSim}")
 print(f"Gamma (theoretical) = {gammaTheory}")
-
+print("")
 
 #Plot average cluster size results:
 plt.figure()
