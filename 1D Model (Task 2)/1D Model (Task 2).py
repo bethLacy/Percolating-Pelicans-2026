@@ -216,11 +216,9 @@ plt.show(block=True)
 #deltaP: the difference between the current p and critical p (1)
 #charGradientSim,charInterceptSim: constants of the best fit straight line of the characteristic cluster sizes (simulated)
 #sigmaSim: the simulated result for the exponent sigma
-#charGradientTheory,charInterceptTheory: constants of the best fit straight line of the characteristic cluster sizes (theoretical)
 #sigmaTheory: the theoretical result for the exponent sigma
 #avGradientSim,avInterceptSim: constants of the best fit straight line of the average cluster sizes (simulated)
 #gammaSim: the simulated result for the exponent gamma
-#avGradientTheory,avInterceptTheory: constants of the best fit straight line of the average cluster sizes (theoretical)
 #gammaTheory: the theoretical result for the exponent gamma
 #sigmaError: percentage error in the simulated result for sigma compared to the theoretical one
 #gammaError: percentage error in the simulated result for gamma compared to the theoretical one
