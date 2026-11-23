@@ -9,8 +9,11 @@ The folder .venv contains a python environment which has been configured to incl
 This script is used for our investigation for task 2 (section 2 of the report).
 
 It simulates cluster number density in one dimension and compares the simulated results against the theoretical expectation.
-
 It produces one figure to compare these results visually.
+
+It also investigates average and characteristic cluster sizes, both theoretical and in simulations.
+
+It uses these cluster size results to estimate the corresponding exponents
 
 ## File 2: '2D Model (Task 4,5).py'
 
