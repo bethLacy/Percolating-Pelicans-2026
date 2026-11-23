@@ -11,6 +11,19 @@ outputFolder = Path(__file__).resolve().parent
 import logging #stop displaying the annoying irrelevant silly warning
 logging.getLogger('matplotlib.backends.backend_ps').setLevel(logging.ERROR)
 
+fontSize = 17 #force manually set font size for all figures
+plt.rcParams.update({
+    'font.size': fontSize,
+    'axes.labelsize': fontSize,
+    'axes.titlesize': fontSize,
+    'xtick.labelsize': fontSize,
+    'ytick.labelsize': fontSize,
+    'legend.fontsize': fontSize
+})
+
+
+
+
 nsamp = 1000 #set number of simulations
 L = 1000 #set number of sites per simulation
 
@@ -58,6 +71,7 @@ for p in ps: #repeat the investigation for all the different p values we want to
     plt.ylabel('$n(s,p)$ (cluster number density)')
     plt.title(f'Cluster number density, p = {p}')
     plt.legend()
+    plt.tight_layout()
     plt.savefig(outputFolder / f'CND_p={p}.eps', format='eps')
     plt.show(block=True)
 
@@ -143,6 +157,7 @@ plt.plot(ps, avSizeTheorys, 'b.-.', label='Theory')
 plt.xlabel('$p$ (probability of individual site occupation)')
 plt.ylabel('Average cluster size')
 plt.legend()
+plt.tight_layout()
 plt.savefig(outputFolder / f'AverageClusterSize.eps', format='eps')
 plt.show(block=True)
 
@@ -153,6 +168,7 @@ plt.plot(ps, charSizeTheorys, 'b.-.', label='Theory')
 plt.xlabel('$p$ (probability of individual site occupation)')
 plt.ylabel('Characteristic cluster size')
 plt.legend()
+plt.tight_layout()
 plt.savefig(outputFolder / f'CharClusterSize.eps', format='eps')
 plt.show(block=True)
 
