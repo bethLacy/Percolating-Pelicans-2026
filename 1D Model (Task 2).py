@@ -7,8 +7,9 @@ nsamp = 1000 #set number of simulations
 L = 1000 #set number of sites per simulation
 
 #CHANGE ME:
-ps = [0.5, 0.75, 0.9] #set individual site occupancy probabilities to investigate
+ps = [0.90, 0.92, 0.94, 0.96, 0.98] #set individual site occupancy probabilities to investigate
 
+#initialise arrays to store results
 avSizeSims = []
 avSizeTheorys = []
 charSizeSims = []
@@ -77,8 +78,10 @@ for p in ps: #repeat the investigation for all the different p values we want to
     #Characteristic cluster size (for each p):
 
     #calculate results
-    charSizeSim = 0 #TODO: replace placeholder value
-    charSizeTheory = sxi
+    lognsp = np.log(nsp[nsp > 0]) #log non-zero cnds
+    gradient, intercept = np.polyfit(s[nsp > 0], lognsp, 1) #fit straight line
+    charSizeSim = -1/gradient #the characteristic cluster size is -1 over the gradient we found
+    charSizeTheory = sxi #we already found the theoretical ccs earlier as sxi
 
     #display results
     print(f"Characteristic cluster size (simulated) = {charSizeSim}")
@@ -92,7 +95,56 @@ for p in ps: #repeat the investigation for all the different p values we want to
     
 #Scaling exponents (done only once using all ps results combined):
 
-#TODO: Determine the exponents corresponding to the characteristic and average cluster size
+#Convert to numpy arrays for safety
+avSizeSims = np.array(avSizeSims)
+avSizeTheorys = np.array(avSizeTheorys)
+charSizeSims = np.array(charSizeSims)
+charSizeTheorys = np.array(charSizeTheorys)
+psArray = np.array(ps)
+
+#set deltaP
+deltaP = 1-psArray
+
+#Find sigma exponents (using characteristic cluster size)
+charGradientSim, charInterceptSim = np.polyfit(np.log(deltaP), np.log(charSizeSims), 1)
+sigmaSim = -1/charGradientSim
+charGradientTheory, charInterceptTheory = np.polyfit(np.log(deltaP), np.log(charSizeTheorys), 1)
+sigmaTheory = -1/charGradientTheory
+
+#Find gamma exponents (using average cluster size)
+avGradientSim, avInterceptSim = np.polyfit(np.log(deltaP), np.log(avSizeSims), 1)
+gammaSim = -avGradientSim
+avGradientTheory, avInterceptTheory = np.polyfit(np.log(deltaP), np.log(avSizeTheorys), 1)
+gammaTheory = -avGradientTheory
+
+#Display results
+print("")
+print("Scaling exponents:")
+print(f"Sigma (simulated) = {sigmaSim}")
+print(f"Sigma (theoretical) = {sigmaTheory}")
+print(f"Gamma (simulated) = {gammaSim}")
+print(f"Gamma (theoretical) = {gammaTheory}")
+
+
+#Plot average cluster size results:
+plt.figure()
+plt.plot(ps, avSizeSims, 'r.--', label='Simulation')
+plt.plot(ps, avSizeTheorys, 'b.-.', label='Theory')
+plt.xlabel('$p$ (probability of individual site occupation)')
+plt.ylabel('Average cluster size')
+plt.legend()
+plt.savefig(f'AverageClusterSize.eps', format='eps')
+plt.show(block=True)
+
+#Plot characteristic cluster size results:
+plt.figure()
+plt.plot(ps, charSizeSims, 'r.--', label='Simulation')
+plt.plot(ps, charSizeTheorys, 'b.-.', label='Theory')
+plt.xlabel('$p$ (probability of individual site occupation)')
+plt.ylabel('Characteristic cluster size')
+plt.legend()
+plt.savefig(f'CharClusterSize.eps', format='eps')
+plt.show(block=True)
 
 
 
@@ -121,6 +173,9 @@ for p in ps: #repeat the investigation for all the different p values we want to
 #avSizeTheory: the theoretical average cluster size
 #avSizeSims: array of the simulated average cluster sizes (for all ps)
 #avSizeTheorys: array of the theoretical average cluster sizes (for all ps)
+
+#lognsp: logs of all the non-zero cnds
+#intercept, gradient: constants of the best fit straight line of the lognsps
 
 #charSizeSim: the simulated characteristic cluster size
 #charSizeTheory: the theoretical characteristic cluster size
