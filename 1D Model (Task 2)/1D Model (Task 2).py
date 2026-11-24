@@ -21,6 +21,7 @@ plt.rcParams.update({
     'legend.fontsize': fontSize
 })
 
+rng = np.random.default_rng(seed=4) #set rng key for reproducability
 
 
 
@@ -44,7 +45,7 @@ for p in ps: #repeat the investigation for all the different p values we want to
     allarea = np.array([]) #initialise array to store sizes of clusters
 
     for i in range(nsamp): #repeat for nsamp different simulations
-        z = np.random.rand(L) #create array z of L random numbers 0-1
+        z = rng.random(L) #create array z of L random numbers 0-1
         m = z<p #create array m of whether each site is occupied (a site is occupied if z < p at that position)
         lw, num = ndimage.label(m) #num gives us the number of clusters identified
         labelList = np.arange(1, num + 1) 
