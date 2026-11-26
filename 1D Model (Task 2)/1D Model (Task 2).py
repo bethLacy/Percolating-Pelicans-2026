@@ -1,8 +1,6 @@
 #TASK 2 CODE IS NOW COMPLETE
 #The only modification that should be made is potentially changing the values of p we test
 
-#hi
-
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import ndimage #measurements deprecated, updated version to use ndimage instead
